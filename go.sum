@@ -21,10 +21,10 @@ github.com/mattn/go-sqlite3 v1.14.22 h1:2gZY6PC6kBnID23Tichd1K+Z0oS6nE/XwU+Vz/5o
 github.com/mattn/go-sqlite3 v1.14.22/go.mod h1:Uh1q+B4BYcTPb+yiD3kU8Ct7aC0hY9fxUwlHK0RXw+Y=
 github.com/stretchr/testify v1.12.1 h1:EuwCh5fleGS7H32xRwO3wRGT7DxrDhLAT6FF8MpWDWE=
 github.com/stretchr/testify v1.12.1/go.mod h1:MDEgiDPPsNp5cuIrHPPCyornHKgEVbtFUmoNlxoYthg=
-github.com/yi-nology/ekit-core v0.1.0 h1:jRj/fqhlRug2YdeHMob7TmSIOts0ZzvNuATJsySarXY=
-github.com/yi-nology/ekit-core v0.1.0/go.mod h1:FhEZhbCo00poIkd7FNPWYBTQysi11ENjLT30sHi0BoM=
-github.com/yi-nology/ekit-logx v0.1.0 h1:34aTngnZpVc/aoF6scCa5wE1lic2LgFQcVYqX04Sy8Q=
-github.com/yi-nology/ekit-logx v0.1.0/go.mod h1:CZSIsEzykHBXyuRJ/XF6cRWZMGAX/kFL7czBcACEOUE=
+github.com/yi-nology/ekit-core v0.2.0 h1:azsvc5E0ni2cbtkP1eZCZyU2X5M5duL+HvWnS0fXXAY=
+github.com/yi-nology/ekit-core v0.2.0/go.mod h1:LvSiD8AqenV1ohsnWURO018Hi7yiRS63IH43+4IwF9c=
+github.com/yi-nology/ekit-logx v0.1.1 h1:r7c0HlYVqeKLBZdKJo+3PirjiCbdnyIgs1Dkj67XVqk=
+github.com/yi-nology/ekit-logx v0.1.1/go.mod h1:CZSIsEzykHBXyuRJ/XF6cRWZMGAX/kFL7czBcACEOUE=
 go.opentelemetry.io/auto/sdk v1.2.1 h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=
 go.opentelemetry.io/auto/sdk v1.2.1/go.mod h1:KRTj+aOaElaLi+wW1kO/DZRXwkF4C5xPbEe3ZiIhN7Y=
 go.opentelemetry.io/otel v1.46.0 h1:FHt5/CDyVxi/8IM1CH7VE/rRgq3kLHa2mSTVMO8AWyc=
