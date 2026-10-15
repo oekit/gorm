@@ -3,6 +3,7 @@ package gormx
 import (
 	"context"
 	"errors"
+	"fmt"
 	"testing"
 	"time"
 
@@ -498,5 +499,81 @@ func TestBaseModel_AutoTimeStamps(t *testing.T) {
 	}
 	if !u.UpdatedAt.After(originalUpdated) {
 		t.Error("expected UpdatedAt to be advanced")
+	}
+}
+
+// —— IsUniqueViolation：SQLite 真表用例（mattn 驱动不映射 gorm.ErrDuplicatedKey，
+//    唯一靠报文「UNIQUE constraint failed: <table>.<col>」判定）——
+
+// uniqueNameModel 唯一索引测试模型。
+type uniqueNameModel struct {
+	BaseModel
+	Name string `gorm:"uniqueIndex"`
+}
+
+// nullNameModel 非空约束测试模型（Name 为可空指针以触发 NOT NULL 违例）。
+type nullNameModel struct {
+	BaseModel
+	Name *string `gorm:"not null"`
+}
+
+func TestIsUniqueViolation_SqliteRealTable(t *testing.T) {
+	db := newTestDB(t, &uniqueNameModel{})
+
+	first := &uniqueNameModel{Name: "dup"}
+	if err := db.Create(first).Error; err != nil {
+		t.Fatal(err)
+	}
+	second := &uniqueNameModel{Name: "dup"}
+	err := db.Create(second).Error
+	if err == nil {
+		t.Fatal("expected unique violation error, got nil")
+	}
+	if !IsUniqueViolation(err) {
+		t.Errorf("expected IsUniqueViolation=true for %q", err.Error())
+	}
+
+	// 包装后的错误（%w）也应被识别
+	wrapped := fmt.Errorf("create user failed: %w", err)
+	if !IsUniqueViolation(wrapped) {
+		t.Error("expected IsUniqueViolation=true for wrapped unique violation")
+	}
+}
+
+func TestIsUniqueViolation_Precision(t *testing.T) {
+	// 非撞键的 SQLite 约束违例不得误判（NOT NULL 违例报文同样含 "constraint failed"）
+	db := newTestDB(t, &nullNameModel{})
+	err := db.Create(&nullNameModel{}).Error
+	if err == nil {
+		t.Fatal("expected NOT NULL violation error, got nil")
+	}
+	if IsUniqueViolation(err) {
+		t.Errorf("expected IsUniqueViolation=false for NOT NULL violation %q", err.Error())
+	}
+}
+
+func TestIsUniqueViolation_MessageTable(t *testing.T) {
+	cases := []struct {
+		name string
+		err  error
+		want bool
+	}{
+		{"nil", nil, false},
+		{"gorm sentinel", gorm.ErrDuplicatedKey, true},
+		{"mysql", errors.New("Error 1062: Duplicate entry 'a' for key 'name'"), true},
+		{"postgres message", errors.New("ERROR: duplicate key value violates unique constraint \"name\""), true},
+		{"postgres code", errors.New("pq: 23505"), true},
+		{"sqlite", errors.New("UNIQUE constraint failed: users.name"), true},
+		{"sqlite wrapped", fmt.Errorf("insert: %w", errors.New("UNIQUE constraint failed: users.name")), true},
+		{"not null violation", errors.New("NOT NULL constraint failed: users.name"), false},
+		{"check violation", errors.New("CHECK constraint failed: users"), false},
+		{"foreign key violation", errors.New("FOREIGN KEY constraint failed"), false},
+		{"record not found", gorm.ErrRecordNotFound, false},
+		{"generic", errors.New("connection refused"), false},
+	}
+	for _, tc := range cases {
+		if got := IsUniqueViolation(tc.err); got != tc.want {
+			t.Errorf("%s: IsUniqueViolation(%v) = %v, want %v", tc.name, tc.err, got, tc.want)
+		}
 	}
 }
