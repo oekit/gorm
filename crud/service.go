@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	bizerrors "github.com/yi-nology/ekit-core/pkg/errors"
-	"github.com/yi-nology/ekit-core/pkg/pagination"
+	bizerrors "github.com/yi-nology/ekit-errors"
+	"github.com/yi-nology/ekit-pagination"
 )
 
 // ErrNotFound 是记录未找到的哨兵错误。

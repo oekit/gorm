@@ -3,7 +3,7 @@ package gormx
 import (
 	"math"
 
-	"github.com/yi-nology/ekit-core/pkg/pagination"
+	"github.com/yi-nology/ekit-pagination"
 	"gorm.io/gorm"
 )
 

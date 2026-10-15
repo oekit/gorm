@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/yi-nology/ekit-core/pkg/pagination"
+	"github.com/yi-nology/ekit-pagination"
 )
 
 // Condition 是一条 WHERE 条件的中性形态（SQL 片段 + 占位符参数）。

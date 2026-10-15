@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	bizerrors "github.com/yi-nology/ekit-core/pkg/errors"
-	"github.com/yi-nology/ekit-core/pkg/pagination"
+	bizerrors "github.com/yi-nology/ekit-errors"
+	"github.com/yi-nology/ekit-pagination"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )

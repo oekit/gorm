@@ -17,9 +17,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/yi-nology/ekit-core/pkg/pagination"
 	"github.com/yi-nology/ekit-gorm/crud"
 	"github.com/yi-nology/ekit-gorm/gormx"
+	"github.com/yi-nology/ekit-pagination"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
