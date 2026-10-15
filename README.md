@@ -10,7 +10,7 @@
 ## 安装
 
 ```bash
-go get github.com/oekit/gorm@v0.1.4
+go get github.com/oekit/gorm@v0.1.7
 ```
 
 ## 包清单
