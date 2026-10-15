@@ -11,7 +11,7 @@
 ## 安装
 
 ```bash
-go get github.com/oekit/gorm@v0.1.7
+go get github.com/oekit/gorm@v0.1.8
 ```
 
 ## 能做什么
