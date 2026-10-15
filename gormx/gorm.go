@@ -16,7 +16,6 @@ type OpenOption func(*openConfig)
 
 type openConfig struct {
 	gormOptions   []gorm.Option
-	skipTracing   bool
 	maxIdleConns  int
 	maxOpenConns  int
 	connLifetime  time.Duration
@@ -28,14 +27,6 @@ type openConfig struct {
 func WithGormOptions(opts ...gorm.Option) OpenOption {
 	return func(c *openConfig) {
 		c.gormOptions = append(c.gormOptions, opts...)
-	}
-}
-
-// WithoutTracing 跳过自动注入 OTel 追踪插件。
-// 默认 Open 会注入 NewOtelPlugin()；调用此选项可关闭（如已自行注册或不需要追踪）。
-func WithoutTracing() OpenOption {
-	return func(c *openConfig) {
-		c.skipTracing = true
 	}
 }
 
@@ -58,11 +49,12 @@ func WithConnMaxIdleTime(d time.Duration) OpenOption {
 	}
 }
 
-// Open 使用指定的 dialector 打开数据库连接，自动注入默认日志和（可选）OTel 追踪插件。
+// Open 使用指定的 dialector 打开数据库连接，自动注入默认日志。
 //
 // 默认行为：
 //   - 注入默认 Logger（Info 级别）
-//   - 注入 OTel 追踪插件（可用 WithoutTracing 关闭）
+//   - 零 tracing 注入：需要 SQL Span 经 github.com/oekit/tracing/gormotel
+//     显式挂载（v0.2.0 起，原内建 OTel 插件已迁出）
 //
 // 可通过选项配置连接池等：
 //
@@ -71,9 +63,10 @@ func WithConnMaxIdleTime(d time.Duration) OpenOption {
 //	    gormx.WithConnectionPool(10, 100, time.Hour),
 //	)
 //
-// 如需关闭追踪（例如已自行注册）：
+// 需要 OTel 追踪时（装饰器显式接入，无 SDK 时 noop）：
 //
-//	db, err := gormx.Open(mysql.Open(dsn), gormx.WithoutTracing())
+//	db, err := gormx.Open(mysql.Open(dsn))
+//	if err := db.Use(gormotel.NewPlugin()); err != nil { ... }
 func Open(dialector gorm.Dialector, opts ...OpenOption) (*gorm.DB, error) {
 	cfg := &openConfig{}
 	for _, opt := range opts {
@@ -107,13 +100,6 @@ func Open(dialector gorm.Dialector, opts ...OpenOption) (*gorm.DB, error) {
 		sqlDB.SetConnMaxLifetime(cfg.connLifetime)
 		if cfg.connIdleTime > 0 {
 			sqlDB.SetConnMaxIdleTime(cfg.connIdleTime)
-		}
-	}
-
-	if !cfg.skipTracing {
-		if err := db.Use(NewOtelPlugin()); err != nil {
-			gormLog.Error("failed use trace plugin", "err", err)
-			return nil, err
 		}
 	}
 

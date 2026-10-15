@@ -20,7 +20,8 @@ type MySQLConfig struct {
 	ConnMaxLifeMin int    `yaml:"conn_max_life_min"`
 }
 
-// OpenMySQL 从配置创建 GORM DB 实例（含 OTel tracing 插件和连接池配置）。
+// OpenMySQL 从配置创建 GORM DB 实例（含连接池配置；零 tracing 注入，
+// 需要 SQL Span 经 github.com/oekit/tracing/gormotel 显式挂载）。
 //
 // 用法：
 //

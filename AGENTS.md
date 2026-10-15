@@ -1,7 +1,7 @@
 # AGENTS.md — oekit/gorm
 
 > gormx 连接池增强 + crud 框架无关 CRUD Service（TxRepository 事务防丢更新）+ gormrepo 仓储
-> 当前版本：`v0.1.7` · module：`github.com/oekit/gorm` · org：[oekit = Open Easy Kit](https://oekit.github.io)
+> 当前版本：`v0.2.0` · module：`github.com/oekit/gorm` · org：[oekit = Open Easy Kit](https://oekit.github.io)
 
 ## 本仓包含
 `crud/`、`crud/gormrepo/`、`gormrepo/`、`gormx/`

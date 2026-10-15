@@ -208,12 +208,12 @@ func TestInTransactionContext_Rollback(t *testing.T) {
 }
 
 func TestOpen_Sqlite(t *testing.T) {
-	// Open with sqlite dialector; verify WithGormOptions and WithoutTracing
+	// Open with sqlite dialector; verify WithGormOptions（零 tracing 注入）/
 	dsn := "file:" + uuid.New().String() + "?mode=memory&cache=shared"
 	dialector := sqlite.Open(dsn)
 
-	// Without tracing — verify no panic, db usable
-	db, err := Open(dialector, WithoutTracing())
+	// 零 tracing 注入 — verify no panic, db usable
+	db, err := Open(dialector)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -230,7 +230,6 @@ func TestOpen_WithConnectionPool(t *testing.T) {
 	dialector := sqlite.Open(dsn)
 
 	db, err := Open(dialector,
-		WithoutTracing(),
 		WithConnectionPool(2, 5, time.Hour),
 	)
 	if err != nil {
@@ -248,7 +247,7 @@ func TestOpen_WithConnectionPool(t *testing.T) {
 func TestOpen_InvalidDialector(t *testing.T) {
 	// nil dialector 在 gorm v1.31 里可能不立即返回 error (直到第一次 query),
 	// 这里只验证不 panic 且返回的 *gorm.DB 可关闭
-	db, err := Open(nil, WithoutTracing())
+	db, err := Open(nil)
 	if err != nil {
 		// 如果这里就返回 error 也接受
 		return

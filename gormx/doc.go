@@ -1,6 +1,7 @@
 // Package gormx 提供 GORM 数据库客户端封装。
 //
-// 所有 enjoydream 后端服务共享此包，统一封装：自定义 Logger、OTel 追踪、连接池配置。
+// 所有 enjoydream 后端服务共享此包，统一封装：自定义 Logger、连接池配置。
+// 零可观测性副作用：构造不注入任何 tracing 插件。
 //
 // # 快速接入
 //
@@ -19,16 +20,19 @@
 //	    30*time.Minute,  // connMaxLifetime
 //	)
 //
-// # OTel 追踪
+// # OTel 追踪（装饰器显式接入）
 //
-// Open 和 OpenWithConfig 会自动注入内建 OTel tracing 插件 (NewOtelPlugin)，
-// 所有 SQL 查询会自动创建 Span，无需手动配置。
-// 仅支持 MySQL 驱动的 server.address 提取，不引入 clickhouse/postgres 依赖。
+// 本包不做任何 tracing 注入（v0.2.0 起原内建插件已迁出）。需要 SQL Span 时
+// 用 github.com/oekit/tracing/gormotel 显式挂载（无 SDK 时 noop）：
+//
+//	db, err := gormx.Open(mysql.Open(dsn))
+//	if err := db.Use(gormotel.NewPlugin(gormotel.WithDBName("mydb"))); err != nil {
+//	    return err
+//	}
 //
 // # 自定义 Logger
 //
-// 默认使用 ekit 内置 Logger（基于 hertz hlog），支持：
+// 默认使用 ekit 内置 Logger，支持：
 //   - 慢查询阈值：默认 200ms
 //   - 日志级别：默认 Info
-//   - OTel Span 日志关联
 package gormx
