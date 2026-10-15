@@ -1,12 +1,12 @@
-module github.com/yi-nology/ekit-gorm
+module github.com/oekit/gorm
 
 go 1.26.0
 
 require (
 	github.com/google/uuid v1.6.0
-	github.com/yi-nology/ekit-errors v0.1.0
-	github.com/yi-nology/ekit-logx v0.1.4
-	github.com/yi-nology/ekit-pagination v0.1.0
+	github.com/oekit/errors v0.1.2
+	github.com/oekit/logx v0.1.6
+	github.com/oekit/pagination v0.1.2
 	go.opentelemetry.io/otel v1.46.0
 	go.opentelemetry.io/otel/trace v1.46.0
 	gorm.io/driver/mysql v1.6.0

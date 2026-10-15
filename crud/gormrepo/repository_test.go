@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"errors"
-	"github.com/yi-nology/ekit-gorm/crud"
+	"github.com/oekit/gorm/crud"
 	"testing"
 
 	"gorm.io/driver/sqlite"

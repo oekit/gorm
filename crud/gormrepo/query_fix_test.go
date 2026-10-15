@@ -3,7 +3,7 @@ package gormrepo
 import (
 	"context"
 
-	"github.com/yi-nology/ekit-gorm/crud"
+	"github.com/oekit/gorm/crud"
 	"testing"
 )
 

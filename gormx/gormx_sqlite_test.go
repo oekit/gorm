@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/yi-nology/ekit-pagination"
+	"github.com/oekit/pagination"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

@@ -1,7 +1,7 @@
 package gormrepo
 
 import (
-	"github.com/yi-nology/ekit-gorm/crud"
+	"github.com/oekit/gorm/crud"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

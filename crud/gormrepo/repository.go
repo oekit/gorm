@@ -4,8 +4,8 @@
 // QuerySpec 翻译为 gorm.DB 语句——import 根包不再传递编译依赖 GORM。
 //
 //	import (
-//		"github.com/yi-nology/ekit-gorm/crud"
-//		gormrepo "github.com/yi-nology/ekit-gorm/gormrepo"
+//		"github.com/oekit/gorm/crud"
+//		gormrepo "github.com/oekit/gorm/gormrepo"
 //	)
 //
 //	repo := gormrepo.NewGormRepository[Project](db)
@@ -17,9 +17,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/yi-nology/ekit-gorm/crud"
-	"github.com/yi-nology/ekit-gorm/gormx"
-	"github.com/yi-nology/ekit-pagination"
+	"github.com/oekit/gorm/crud"
+	"github.com/oekit/gorm/gormx"
+	"github.com/oekit/pagination"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

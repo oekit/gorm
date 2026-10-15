@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/yi-nology/ekit-logx"
+	"github.com/oekit/logx"
 	"gorm.io/gorm"
 	gormLogger "gorm.io/gorm/logger"
 )

@@ -4,12 +4,12 @@ import (
 	"context"
 
 	"errors"
-	"github.com/yi-nology/ekit-gorm/crud"
+	"github.com/oekit/gorm/crud"
 	"strings"
 	"testing"
 
-	bizerrors "github.com/yi-nology/ekit-errors"
-	"github.com/yi-nology/ekit-pagination"
+	bizerrors "github.com/oekit/errors"
+	"github.com/oekit/pagination"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
