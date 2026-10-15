@@ -14,8 +14,16 @@
 go get github.com/oekit/gorm@v0.1.7
 ```
 
-## 快速使用
+## 能做什么
 
+- **gormx**：连接池函数选项、`OpenMySQL`、OTel 追踪（可关）、分页
+- **crud.Service**：泛型 CRUD，8 个生命周期钩子（Before/After Create/Update/Delete）
+- **防丢更新**：TxRepository 事务 + FOR UPDATE 行锁（GormRepository 已实现）
+- **afterUpdate 失败整体回滚**
+
+## 使用示例
+
+### 连接池 + 仓储 + Service
 ```go
 import (
     "github.com/oekit/gorm/crud"
@@ -23,11 +31,18 @@ import (
     "github.com/oekit/gorm/gormx"
 )
 
-db, _ := gormx.Open(dialector, gormx.WithConnectionPool(10, 100, time.Hour))
+db, _ := gormx.Open(dialector,
+    gormx.WithConnectionPool(10, 100, time.Hour),
+    gormx.WithConnMaxIdleTime(30*time.Minute))
 repo := gormrepo.NewGormRepository[Project](db)
-svc := crud.NewBaseService[Project, CreateReq, UpdateReq](repo) // Update 自动事务+行锁
+svc := crud.NewBaseService[Project, CreateReq, UpdateReq](repo)
 ```
-
+### 钩子定制
+```go
+svc.SetBeforeCreate(func(ctx context.Context, req *CreateReq, e *Project) error {
+    e.Owner = currentUser(ctx)
+    return nil
+})
 ## 包清单
 
 - \`gormx/\` — Open(函数选项连接池)、Paginate、InTransactionContext、FilterBuilder
