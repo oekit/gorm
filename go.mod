@@ -4,9 +4,7 @@ go 1.26.0
 
 require (
 	github.com/google/uuid v1.6.0
-	github.com/oekit/errors v0.1.2
 	github.com/oekit/logx v0.1.6
-	github.com/oekit/pagination v0.1.2
 	go.opentelemetry.io/otel v1.46.0
 	go.opentelemetry.io/otel/trace v1.46.0
 	gorm.io/driver/mysql v1.6.0
@@ -23,6 +21,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/mattn/go-sqlite3 v1.14.22 // indirect
+	github.com/oekit/pkg v0.1.0
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
 	go.opentelemetry.io/otel/metric v1.46.0 // indirect
 	golang.org/x/text v0.42.0 // indirect

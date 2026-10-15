@@ -3,7 +3,7 @@ package gormx
 import (
 	"testing"
 
-	"github.com/oekit/pagination"
+	"github.com/oekit/pkg/pagination"
 	"gorm.io/gorm"
 )
 

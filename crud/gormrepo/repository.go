@@ -19,7 +19,7 @@ import (
 
 	"github.com/oekit/gorm/crud"
 	"github.com/oekit/gorm/gormx"
-	"github.com/oekit/pagination"
+	"github.com/oekit/pkg/pagination"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

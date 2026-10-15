@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	bizerrors "github.com/oekit/errors"
-	"github.com/oekit/pagination"
+	bizerrors "github.com/oekit/pkg/errors"
+	"github.com/oekit/pkg/pagination"
 )
 
 // ErrNotFound 是记录未找到的哨兵错误。
