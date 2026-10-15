@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/google/uuid v1.6.0
 	github.com/yi-nology/ekit-errors v0.1.0
-	github.com/yi-nology/ekit-logx v0.1.1
+	github.com/yi-nology/ekit-logx v0.1.4
 	github.com/yi-nology/ekit-pagination v0.1.0
 	go.opentelemetry.io/otel v1.46.0
 	go.opentelemetry.io/otel/trace v1.46.0
