@@ -1,10 +1,10 @@
 # AGENTS.md — oekit/gormx
 
-> gormx 连接池增强 + crud 框架无关 CRUD Service（TxRepository 事务防丢更新）+ gormrepo 仓储
-> 当前版本：`v0.5.1` · module：`github.com/oekit/gormx` · org：[oekit = Open Easy Kit](https://oekit.github.io)
+> SQL/GORM 全家——连接池增强、框架无关 CRUD Service、仓储（原 oekit/gorm，v0.3.0 更名）
+> 当前版本：`v0.5.2` · module：`github.com/oekit/gormx` · org：[oekit = Open Easy Kit](https://oekit.github.io)
 
 ## 本仓包含
-根包（gormx）+ `crud/` + `gormrepo/`
+`./`、`crud/`、`gormrepo/`
 
 ## 硬规则速览（全矩阵适用）
 
@@ -48,3 +48,4 @@
 - 历史完整规范见 ekit 单体仓（git.enjoye.top/enjoydream/ekit，冻结维护）的 AGENTS.md 与 docs/
 
 ## 本仓范围
+
