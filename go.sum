@@ -12,8 +12,8 @@ github.com/mattn/go-sqlite3 v1.14.22 h1:2gZY6PC6kBnID23Tichd1K+Z0oS6nE/XwU+Vz/5o
 github.com/mattn/go-sqlite3 v1.14.22/go.mod h1:Uh1q+B4BYcTPb+yiD3kU8Ct7aC0hY9fxUwlHK0RXw+Y=
 github.com/oekit/logx v0.5.0 h1:6Yrs3m3ZCqUazUY9hxYHf6Vzob0bkSjAjw8PGzqi9pw=
 github.com/oekit/logx v0.5.0/go.mod h1:x3wn+/0aYDrcs7EavWWAz8qUbwtysTB/gvuLZxtl2B0=
-github.com/oekit/pkg v0.9.3 h1:lzcniB2Mf4fi59g3JYWsfJ93J4juhk96OSgrA4jLRyE=
-github.com/oekit/pkg v0.9.3/go.mod h1:SyenhQGuR9SlhS7RJlWCKmraDvOxUNozQdqnpEFefHo=
+github.com/oekit/pkg v0.10.0 h1:kPGYiL4KdWhFes39M2ouUwWMzSC7n/PeGH7cwAA87Es=
+github.com/oekit/pkg v0.10.0/go.mod h1:sVeOtmG1sLY2aSnzFIbUAF2Qoh7G8R5vnWtWmLCv8NM=
 golang.org/x/text v0.34.0 h1:oL/Qq0Kdaqxa1KbNeMKwQq0reLCCaFtqu2eNuSeNHbk=
 golang.org/x/text v0.34.0/go.mod h1:homfLqTYRFyVYemLBFl5GgL/DWEiH5wcsQ5gSh1yziA=
 gorm.io/driver/mysql v1.6.0 h1:eNbLmNTpPpTOVZi8MMxCi2aaIm0ZpInbORNXDwyLGvg=

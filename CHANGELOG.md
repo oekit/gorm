@@ -2,6 +2,10 @@
 
 所有 notable 变更记录如下。格式参考 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [v0.5.3] — 2026-10-17
+
+- fix(deps): pkg 地板 v0.9.3 → v0.10.0（拆分版，零代码改动）
+
 ## [v0.5.2] — 2026-10-17
 
 - fix(deps): 内部依赖地板全量对齐最新——pkg v0.1.3 → v0.9.3、logx v0.1.9 → v0.5.0；go 最低版本降至 1.24.0（gorm 生态无回抬，自然落点）
